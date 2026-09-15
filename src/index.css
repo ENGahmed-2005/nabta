@@ -2,17 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
 html {
   scroll-behavior: smooth;
+  background: #f8f9fb;
 }
 
 body {
+  margin: 0;
   overflow-x: hidden;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(21, 94, 239, 0.08), transparent 28rem),
+    radial-gradient(circle at 12% 38%, rgba(229, 57, 53, 0.055), transparent 24rem),
+    #f8f9fb;
+  color: #111827;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: #155eef;
+  background: #155eef;
   color: #ffffff;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c9ced8 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9ced8;
+  border-radius: 999px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -28,25 +61,54 @@ body {
 
 :focus-visible {
   outline: 2px solid #155eef;
-  outline-offset: 3px;
-  border-radius: 2px;
+  outline-offset: 4px;
+  border-radius: 6px;
 }
 
-/* Reveal-on-scroll primitive, toggled via IntersectionObserver in useReveal */
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(22px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Subtle noise-free grid backdrop used behind the hero pulse mark */
 .pulse-grid {
+  background-color: #fff;
   background-image:
-    linear-gradient(to right, #e4e7ec 1px, transparent 1px),
-    linear-gradient(to bottom, #e4e7ec 1px, transparent 1px);
+    linear-gradient(to right, rgba(228, 231, 236, 0.72) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(228, 231, 236, 0.72) 1px, transparent 1px);
   background-size: 32px 32px;
+}
+
+.section-shell {
+  width: min(1240px, calc(100% - 3rem));
+  margin-inline: auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #667085;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.75rem;
+  height: 1px;
+  background: #155eef;
+}
+
+@media (max-width: 640px) {
+  .section-shell {
+    width: min(100% - 2rem, 1240px);
+  }
 }
