@@ -11,13 +11,10 @@ export default function Navbar() {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
-        });
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (visible) setActive(visible.target.id);
       },
-      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+      { rootMargin: "-42% 0px -48% 0px", threshold: 0 }
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -26,20 +23,23 @@ export default function Navbar() {
 
   return (
     <nav
-      aria-label="Primary"
-      className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 sm:bottom-6"
+      aria-label="Primary navigation"
+      className="fixed bottom-4 left-1/2 z-50 w-[calc(100%-1.5rem)] max-w-max -translate-x-1/2 sm:bottom-6"
     >
-      <div className="flex items-center gap-0.5 rounded-full border border-line/80 bg-surface/85 px-2 py-2 shadow-[0_8px_30px_-8px_rgba(17,24,39,0.18)] backdrop-blur-md sm:gap-1 sm:px-2.5">
+      <div className="flex items-center rounded-[22px] border border-line/80 bg-white/90 p-1.5 shadow-[0_18px_55px_-22px_rgba(17,24,39,0.38)] backdrop-blur-xl">
         <a
           href="#home"
-          className="mr-1 hidden items-center gap-1.5 rounded-full px-3 py-2 font-display text-sm font-semibold tracking-tight text-ink sm:flex"
+          className="mr-1 hidden items-center gap-2 rounded-[16px] px-3.5 py-2.5 font-display text-sm font-bold tracking-[-0.02em] text-ink sm:flex"
+          aria-label="Nabta home"
         >
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red opacity-60" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-red" />
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red opacity-40" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-red" />
           </span>
           NABTA
         </a>
+
+        <span className="mx-1 hidden h-6 w-px bg-line sm:block" />
 
         {navigation.map((item) => {
           const isActive = active === item.id;
@@ -47,12 +47,12 @@ export default function Navbar() {
             <a
               key={item.id}
               href={item.href}
-              aria-current={isActive ? "true" : undefined}
+              aria-current={isActive ? "page" : undefined}
               className={[
-                "rounded-full px-2.5 py-2 text-[13px] font-medium transition-colors duration-200 sm:px-3.5",
+                "relative rounded-[16px] px-3 py-2.5 text-[12px] font-semibold transition-all duration-300 sm:px-3.5 sm:text-[13px]",
                 isActive
-                  ? "bg-blue-dim text-blue"
-                  : "text-muted hover:text-ink",
+                  ? "bg-blue text-white shadow-[0_6px_18px_-8px_rgba(21,94,239,0.8)]"
+                  : "text-muted hover:bg-blue-dim hover:text-blue",
               ].join(" ")}
             >
               {item.label}
