@@ -1,15 +1,17 @@
 import technologies from "../../data/technologies.js";
 import useReveal from "../../hooks/useReveal.js";
+import { useApp } from "../../context/AppContext.jsx";
 
 export default function Technologies() {
   const revealRef = useReveal();
+  const { t } = useApp();
   return (
-    <section className="border-t border-line py-28 sm:py-32">
-      <div className="mx-auto max-w-shell px-6">
+    <section className="border-t border-line/80 py-28 sm:py-32">
+      <div className="section-shell">
         <div ref={revealRef} className="reveal grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8">
           {technologies.map((group) => (
             <div key={group.id}>
-              <h3 className="mb-5 font-mono text-xs tracking-[0.1em] text-muted">{group.group}</h3>
+              <h3 className="mb-5 font-mono text-xs tracking-[0.1em] text-muted">{t(group.group)}</h3>
               <ul className="flex flex-col gap-3">
                 {group.items.map((item) => (
                   <li key={item} className="group flex items-center justify-between border-b border-line pb-3 font-display text-lg text-ink transition-colors duration-200 hover:text-red">

@@ -87,6 +87,91 @@ body.theme-light * { scrollbar-color: #cbd0d8 transparent; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 :focus-visible { outline: 2px solid #e53935; outline-offset: 4px; border-radius: 6px; }
 
+/* Hairline grid background used by the Work / Team sections: a 1px line
+   between cards instead of individually bordered, floating ones. Colors
+   flip with the existing .border-line dark/light overrides below. */
+.bg-line { background-color: #292929 !important; }
+body.theme-light .bg-line { background-color: #e4e7ec !important; }
+
+/* Oversized faint numeral behind a section heading. Uses currentColor so
+   it automatically follows text-ink's dark/light override — no separate
+   color variables to keep in sync. */
+.ghost-num {
+  position: absolute;
+  top: -0.5em;
+  inset-inline-start: -0.05em;
+  font-size: clamp(76px, 10vw, 160px);
+  opacity: 0.05;
+  z-index: -1;
+  user-select: none;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Vertical spine label along the edge, desktop only. inset-inline-start
+   flips it to the right edge automatically under dir="rtl". */
+.rail {
+  position: fixed;
+  inset-inline-start: 22px;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: #a3a3a3;
+  z-index: 30;
+  text-transform: uppercase;
+}
+@media (min-width: 1280px) { .rail { display: flex; } }
+.rail .rail-dash { width: 1px; height: 28px; background: #292929; display: inline-block; }
+body.theme-light .rail { color: #667085; }
+body.theme-light .rail .rail-dash { background: #e4e7ec; }
+
+/* Custom cursor dot, desktop pointer only */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e53935;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.25s, width 0.2s, height 0.2s;
+}
+.cursor-dot.visible { opacity: 1; }
+.cursor-dot.hover { width: 26px; height: 26px; opacity: 0.18; }
+@media (pointer: coarse) { .cursor-dot { display: none; } }
+
+/* Hero headline: staggered word rise-in, played once on load */
+.headline-word { display: inline-block; overflow: hidden; vertical-align: top; }
+.headline-word > span {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: riseIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes riseIn { to { transform: translateY(0); } }
+
+/* Signal line in the hero mark: drawn in once via stroke-dashoffset */
+.signal-line {
+  stroke-dasharray: 640;
+  stroke-dashoffset: 640;
+  animation: drawSignal 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+@keyframes drawSignal { to { stroke-dashoffset: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .headline-word > span { transform: none; animation: none; }
+  .signal-line { stroke-dashoffset: 0; animation: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
