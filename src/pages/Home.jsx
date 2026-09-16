@@ -1,4 +1,6 @@
 import Navbar from "../components/Navbar/Navbar.jsx";
+import RailLabel from "../components/shared/RailLabel.jsx";
+import CursorDot from "../components/shared/CursorDot.jsx";
 import Hero from "../components/Hero/Hero.jsx";
 import Projects from "../components/Projects/Projects.jsx";
 import Team from "../components/Team/Team.jsx";
@@ -11,6 +13,8 @@ import Footer from "../components/Footer/Footer.jsx";
 export default function Home() {
   return (
     <>
+      <CursorDot />
+      <RailLabel />
       <Navbar />
       <main>
         <Hero />

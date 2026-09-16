@@ -20,6 +20,7 @@ export default {
       },
       fontFamily: {
         display: ["'Space Grotesk'", "sans-serif"],
+        serif: ["'Fraunces'", "Georgia", "serif"],
         body: ["'Inter'", "sans-serif"],
         mono: ["'JetBrains Mono'", "monospace"],
       },

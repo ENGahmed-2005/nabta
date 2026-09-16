@@ -1,14 +1,48 @@
-// Arabic content. Shape mirrors the future Laravel REST response.
+// src/data/about.js
+//
+// Shape mirrors the future Laravel REST response: GET /api/about
+
 const about = {
-  heading: "نبني بهدف واضح.",
-  intro: "نبطة فريق تطوير متعاون يركز على تحويل الأفكار إلى منتجات رقمية موثوقة، قابلة للتوسع وسهلة الاستخدام.",
+  heading: "We build with purpose.",
+  intro:
+    "NABTA is a collaborative development team focused on turning ideas into reliable, scalable digital products.",
   pillars: [
-    { id: "architecture", title: "هندسة برمجية نظيفة", description: "كود منظم بحدود واضحة، يساعد الفريق على التحرك بسرعة دون كسر ما يعمل بالفعل." },
-    { id: "technology", title: "تقنيات حديثة", description: "نستخدم React وLaravel لأنهما يساعداننا على بناء المنتجات وصيانتها بسرعة، لا لمجرد اتباع الموضة." },
-    { id: "interfaces", title: "واجهات تتمحور حول المستخدم", description: "كل شاشة تُبنى حول ما يحتاج المستخدم إلى إنجازه تالياً، وليس حول ما يبدو مبهراً في العرض فقط." },
-    { id: "systems", title: "أنظمة خلفية قابلة للتوسع", description: "واجهات API وقواعد بيانات مصممة لتتحمل نمو الاستخدام، وليس فقط لاجتياز أول تجربة." },
-    { id: "performance", title: "الأداء", description: "سرعة التحميل والاستجابة جزء من المنتج نفسه، وليست تفصيلاً نضيفه في النهاية." },
-    { id: "collaboration", title: "التعاون", description: "نخطط للواجهة والنظام الخلفي معاً من اليوم الأول حتى لا تتحول مرحلة الدمج إلى مفاجأة." },
+    {
+      id: "architecture",
+      title: "Clean architecture",
+      description:
+        "Code organized around clear boundaries — so a small team can move fast without breaking what already works.",
+    },
+    {
+      id: "technology",
+      title: "Modern technologies",
+      description:
+        "React and Laravel as a working pair, not a trend — chosen because they let us ship and maintain quickly.",
+    },
+    {
+      id: "interfaces",
+      title: "User-focused interfaces",
+      description:
+        "Every screen is built around what the person using it needs to do next, not what looks impressive in a demo.",
+    },
+    {
+      id: "systems",
+      title: "Scalable backend systems",
+      description:
+        "APIs and databases designed to hold up as usage grows, not just to pass a first review.",
+    },
+    {
+      id: "performance",
+      title: "Performance",
+      description:
+        "Fast load times and responsive interactions are treated as a feature, not an afterthought.",
+    },
+    {
+      id: "collaboration",
+      title: "Collaboration",
+      description:
+        "Frontend and backend planned together from day one, so integration is never a surprise.",
+    },
   ],
 };
 
