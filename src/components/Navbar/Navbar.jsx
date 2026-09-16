@@ -4,7 +4,7 @@ import { useApp } from "../../context/AppContext.jsx";
 
 export default function Navbar() {
   const [active, setActive] = useState("home");
-  const { language, isDark, toggleLanguage, toggleTheme } = useApp();
+  const { language, isDark, toggleLanguage, toggleTheme, t } = useApp();
 
   useEffect(() => {
     const sections = navigation.map((item) => document.querySelector(item.href)).filter(Boolean);
@@ -30,10 +30,9 @@ export default function Navbar() {
         <div className="flex items-center gap-0.5">
           {navigation.map((item) => {
             const isActive = active === item.id;
-            const label = language === "ar" ? item.label : ({ home: "Home", work: "Work", team: "Team", services: "Services", about: "About", contact: "Contact" }[item.id] || item.label);
             return (
               <a key={item.id} href={item.href} aria-current={isActive ? "page" : undefined} className={["relative rounded-[16px] px-2.5 py-2.5 text-[11px] font-semibold transition-all duration-300 sm:px-3 sm:text-[13px]", isActive ? "bg-red text-white shadow-[0_6px_18px_-8px_rgba(229,57,53,0.8)]" : "text-muted hover:bg-blue-dim hover:text-red"].join(" ")}>
-                {label}
+                {t(item.label)}
               </a>
             );
           })}
